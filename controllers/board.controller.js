@@ -7,35 +7,35 @@ class BoardController {
   }
 
   static async createPage(req, res) {
-    res.render("pages/board/add")
+    res.render("pages/boards/add")
   }
 
   static async updatePage(req, res) {
-    res.render("pages/board/update")
+    res.render("pages/boards/update")
   }
 
   static async detailPage(req, res) {
-    res.render("pages/board/detail")
+    res.render("pages/boards/detail")
   }
 
   static async addNew(req, res) {
     try {
-      await prisma.keybaord.create({
+      await prisma.keyboard.create({
         data: {
           name : req.body.name,
           brand: req.body.brand,
           desc : req.body.desc,
           price: Number(req.body.price),
-          img:req.file.filename,
-          layoutId: req.body.layout,
-          userId: req.body.userId,
+          img: req.file.filename,
+          layout: req.body.layout,
+          userId: "abc123",
         }
       });
+      res.redirect("/");
     } catch (error) {
-      req.flash("error", error)
-      res.redirect("/board/add")
+      console.log(error)
+      res.redirect("/board/create")
     }
-    res.redirect("/");
   }
 }
 
