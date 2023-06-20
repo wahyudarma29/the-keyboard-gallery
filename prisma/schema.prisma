@@ -16,6 +16,7 @@ model Keyboard {
     desc      String
     price     Int
     img       String
+    layout    String
     usersfav  UserFavorites[]
     user      User            @relation(fields: [userId], references: [id])
     userId    String
