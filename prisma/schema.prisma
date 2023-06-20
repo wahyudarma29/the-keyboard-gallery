@@ -16,8 +16,6 @@ model Keyboard {
     desc      String
     price     Int
     img       String
-    layout    Layout          @relation(fields: [layoutId], references: [id])
-    layoutId  String
     usersfav  UserFavorites[]
     user      User            @relation(fields: [userId], references: [id])
     userId    String
@@ -31,14 +29,6 @@ model User {
     password     String
     favkeyboards UserFavorites[]
     keyboards    Keyboard[]
-}
-
-model Layout {
-    id        String     @id @default(uuid())
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
-    name      String     @unique
-    keyboards Keyboard[]
 }
 
 model UserFavorites {
