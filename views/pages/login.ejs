@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <header><%- include("../components/navbar") %></header>
+    <main>
+      <section id="form-login" class="container vh-100 d-flex flex-column justify-content-center">
+        <form class="d-flex flex-column gap-3" method="post" action="/login">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Enter username"
+              name="username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </section>
+    </main>
+    <%- include("../partials/scripts") %>
+</body>
+  </body>
+</html>
