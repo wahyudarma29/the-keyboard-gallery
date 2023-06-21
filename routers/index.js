@@ -1,13 +1,19 @@
 const { Router } = require("express");
 
-const oardRouter = require("./board.router")
+const auth = require("../middlewares/auth")
+
+const authRouter = require("./auth.router")
+const boardRouter = require("./board.router")
 
 const router = Router()
+
+router.use(authRouter)
+router.use(auth)
 
 router.get("/about", (req, res) => {
   res.render("pages/about");
 });
 
-router.use(oardRouter);
+router.use(boardRouter);
 
 module.exports = router;
