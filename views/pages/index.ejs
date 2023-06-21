@@ -9,7 +9,7 @@
       <section id="hero">
         <div class="py-5 px-5 text-center">
           <div>
-            <h1 class="display-4 mb-4">Hello, world!</h1>
+            <h1 class="display-4 mb-4">Welcome, brother!</h1>
             <p class="lead mb-4">
               This is a simple hero unit, a simple jumbotron-style component for
               calling extra attention to featured content or information.
@@ -18,77 +18,39 @@
               It uses utility classes for typography and spacing to space
               content out within the larger container.
             </p>
-            <p class="lead mb-4">
-              <a class="btn btn-primary btn-lg" href="#" role="button"
-                >Learn more</a
-              >
-            </p>
           </div>
         </div>
       </section>
       <section id="content">
         <div class="container">
-          <div class="d-flex flex-row justify-content-center flex-wrap">
+          <div class="d-flex justify-content-center flex-wrap">
+            <% if (boards.length < 1) { %>
+            <p class="h3 text-center">No Data</p>
+            <% } else { %> <% boards.forEach((board) => { %>
             <div class="p-2">
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp"
+                  width="280px"
+                  height="191px"
+                  src="/uploads/<%= board.img %>"
                   class="card-img-top"
                   alt="..."
                 />
                 <div class="card-body">
                   <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    Owner: | <%= board.name %> | <%= board.brand %> | Layout:
+                    <%= board.layout %>
                   </p>
+                  <a
+                    class="btn btn-dark w-100"
+                    href="/board/<%= board.id %>/details"
+                    role="button"
+                    >View Details</a
+                  >
                 </div>
               </div>
             </div>
-            <div class="p-2">
-              <div class="card" style="width: 18rem">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="p-2">
-              <div class="card" style="width: 18rem">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="p-2">
-              <div class="card" style="width: 18rem">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <% }) %> <% } %>
           </div>
         </div>
       </section>
