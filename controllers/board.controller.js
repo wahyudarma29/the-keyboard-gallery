@@ -3,7 +3,8 @@ const prisma = new PrismaClient();
 
 class BoardController {
   static async listPage(req, res) {
-    res.render("pages/index")
+    const result = await prisma.keyboard.findMany()
+    res.render("pages/index", {boards: result})
   }
 
   static async createPage(req, res) {
@@ -11,11 +12,39 @@ class BoardController {
   }
 
   static async updatePage(req, res) {
-    res.render("pages/boards/update")
+    try {
+      const result = await prisma.keyboard.findUnique({
+        where: {
+          id: req.params.id
+        }
+      })
+
+      if(!result){
+        throw "Data is not exists!"        
+      } else {
+        res.render("pages/boards/edit", { board: result })
+      }
+    } catch (error) {
+      res.redirect("/")
+    }
   }
 
   static async detailPage(req, res) {
-    res.render("pages/boards/detail")
+    try {
+      const result = await prisma.keyboard.findUnique({
+        where: {
+          id: req.params.id
+        }
+      })
+
+      if(!result){
+        throw "Data is not exists!"        
+      } else {
+        res.render("pages/boards/details", {board: result})
+      }
+    } catch (error) {
+      res.redirect("/")
+    }
   }
 
   static async addNew(req, res) {
@@ -35,6 +64,29 @@ class BoardController {
     } catch (error) {
       console.log(error)
       res.redirect("/board/create")
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      await prisma.keyboard.update({
+        where: {
+          id: req.params.id,
+        },
+        data: {
+          name : req.body.name,
+          brand: req.body.brand,
+          desc : req.body.desc,
+          price: Number(req.body.price),
+          img: req.file.filename,
+          layout: req.body.layout,
+          userId: "abc123",
+        }
+      });
+      res.redirect("/");
+    } catch (error) {
+      console.log(error)
+      res.redirect(`/board/${req.params.id}/edit`)
     }
   }
 }
