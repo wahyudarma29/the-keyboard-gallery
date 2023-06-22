@@ -3,7 +3,15 @@ const prisma = new PrismaClient();
 
 class BoardController {
   static async listPage(req, res) {
-    const result = await prisma.keyboard.findMany()
+    const result = await prisma.keyboard.findMany({
+      include:{
+        user: {
+          select:{
+            username:true,
+          }
+        },
+      }
+    })
     res.render("pages/index", {boards: result})
   }
 
@@ -51,6 +59,11 @@ class BoardController {
               username:true,
             }
           },
+          _count:{
+            select:{
+              usersfav:true,
+            }
+          }
         }
       })
       if(!result){
@@ -74,13 +87,13 @@ class BoardController {
           price: Number(req.body.price),
           img: req.file.filename,
           layout: req.body.layout,
-          userId: req.user.userId,
+          userId: req.user.id,
         }
       });
       res.redirect("/");
     } catch (error) {
       req.flash("error", error)
-      res.redirect("/board/create")
+      res.redirect("/board/add")
     }
   }
 
@@ -104,6 +117,38 @@ class BoardController {
     } catch (error) {
       req.flash("error", error)
       res.redirect(`/board/${req.params.id}/edit`)
+    }
+  }
+
+  static async likeBoard(req, res) {
+    try {
+        await prisma.userFavorites.create({
+          data: {
+              userId: req.user.id,
+              keyboardId: req.params.id
+          }
+        });
+        res.redirect(`/board/${req.params.id}/details`);
+    } catch (error) {
+      console.log(error)
+      res.redirect(`/board/${req.body.keyboardId}/details`)
+    }
+  }
+
+  static async likedBoardList(req, res) {
+    try {
+      const result = await prisma.userFavorites.findMany({
+        where: {
+            userId: req.user.id
+        },
+        include:{
+          keyboard: true
+        }
+      });
+      res.render("pages/boards/likedBoards", {boards: result});
+    } catch (error) {
+      req.flash("error", error)
+      res.redirect("/")
     }
   }
 }
