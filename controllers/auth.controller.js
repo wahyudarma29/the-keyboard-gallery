@@ -3,8 +3,7 @@ const passport = require("../helper/passport")
 class AuthController {
   static loginPage (req, res) {
     if (req.isAuthenticated()) return res.redirect("/")
-
-    res.render("pages/login")
+    res.render("pages/login", {isLoggedIn: res.locals.isLoggedIn})
   }
 
   static async login(req, res, next) {
