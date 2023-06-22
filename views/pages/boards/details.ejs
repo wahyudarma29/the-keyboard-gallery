@@ -7,13 +7,21 @@
     <header><%- include("../../components/navbar") %></header>
     <main></main>
       <section id="content">
-        <div class="container">
+        <div class="container mt-4">
             <div class="d-flex">
                 <div class="p-2">
-                    <img src="/uploads/<%= board.img %>" alt="board image" width="100%" height="100%">
+                  <img width="800px" height="500px" class="rounded" <% if
+                  (board.img.includes("https")) {%> src="<%= board.img %>" <%}
+                  else {%> src="/uploads/<%= board.img %>" <%}%> alt="board image" />
                 </div>
-                <div class="p-2">
+                <div class="pt-5">
+                    <p><%= board.name %></p>
+                    <p>Owner: <%= board.user.username %> </p>
+                    <p>Price Total ($): <%= board.price %> </p>
                     <p><%= board.desc %></p>
+                    <form action="/board/<%= board.id %>/like" method="post">
+                      <button type="button" class="btn btn-outline-danger">Like</button>
+                    </form>
                 </div>
             </div>
         </div>
