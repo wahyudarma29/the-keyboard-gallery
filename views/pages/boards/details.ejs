@@ -19,6 +19,8 @@
                     <p>Owner: <%= board.user.username %> </p>
                     <p>Price Total ($): <%= board.price %> </p>
                     <p><%= board.desc %></p>
+                    <br>
+                    <p><b><%= board._count.usersfav %> Likes</b></p>
                     <form action="/board/<%= board.id %>/like" method="post">
                       <button type="submit" class="btn btn-outline-danger">Like</button>
                     </form>
@@ -26,7 +28,7 @@
             </div>
         </div>
       </section>
-      <%- include("../../components/footer") %>
+      <%- // include("../../components/footer") %>
     </main>
     <%- include("../../partials/scripts") %>
   </body>
