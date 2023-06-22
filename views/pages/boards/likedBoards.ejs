@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../../partials/head") %>
+  </head>
+  <body>
+    <header class="position-fixed w-100">
+      <%- include("../../components/navbar") %>
+    </header>
+    <main>
+      <section id="hero">
+        <div class="px-5 text-center" style="padding-top: 80px">
+          <div>
+            <h1 class="display-4 mb-4">Favorite Galleries</h1>
+          </div>
+        </div>
+      </section>
+      <section id="content">
+        <div class="container">
+          <div class="d-flex justify-content-center flex-wrap">
+            <% if (boards.length < 1) { %>
+            <p class="h3 text-center">No Data</p>
+            <% } else { %> <% boards.forEach((board) => { %>
+            <div class="p-2">
+              <div class="card" style="width: 18rem">
+                <img width="280px" height="191px" <% if
+                (board.keyboard.img.includes("https")) {%> src="<%=
+                board.keyboard.img %>" <%} else {%> src="/uploads/<%=
+                board.keyboard.img %>" <%}%> class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Owner: | <%= board.keyboard.name %> | <%=
+                    board.keyboard.brand %> | Layout: <%= board.keyboard.layout
+                    %>
+                  </p>
+                  <a
+                    class="btn btn-dark w-100"
+                    href="/board/<%= board.keyboard.id %>/details"
+                    role="button"
+                    >View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
+        </div>
+      </section>
+      <%- // include("../../components/footer") %>
+    </main>
+    <%- include("../../partials/scripts") %>
+  </body>
+</html>
