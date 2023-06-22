@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <header><%- include("../components/navbar") %></header>
+    <main>
+      <section id="hero">
+        <div class="py-5 px-5 text-center">
+          <div>
+            <h1 class="display-4 mb-4">This is your Gallery</h1>
+          </div>
+        </div>
+      </section>
+      <section id="content">
+        <div class="container">
+          <div class="d-flex justify-content-center flex-wrap">
+            <% if (boards.length < 1) { %>
+            <p class="h3 text-center">No Data</p>
+            <% } else { %> <% boards.forEach((board) => { %>
+            <div class="p-2">
+              <div class="card" style="width: 18rem">
+                <img width="280px" height="191px" <% if
+                (board.img.includes("https")) {%> src="<%= board.img %>" <%}
+                else {%> src="/uploads/<%= board.img %>" <%}%>
+                class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Owner: | <%= board.name %> | <%= board.brand %> | Layout:
+                    <%= board.layout %>
+                  </p>
+                  <a
+                    class="btn btn-dark w-100"
+                    href="/board/<%= board.id %>/details"
+                    role="button"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include("../partials/scripts") %>
+  </body>
+</html>
