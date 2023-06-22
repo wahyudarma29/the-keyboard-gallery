@@ -24,14 +24,17 @@
         <li class="nav-item">
           <a class="nav-link" href="/board/add">New Board</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
+        <% if (isLoggedIn) {%>
         <form method="post" action="/logout">
           <li class="nav-item">
             <button class="nav-link" type="submit">Logout</button>
           </li>
         </form>
+        <%} else {%>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <% } %>
       </ul>
     </div>
   </div>
