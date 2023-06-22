@@ -11,13 +11,10 @@
           <div>
             <h1 class="display-4 mb-4">Welcome, brother!</h1>
             <p class="lead mb-4">
-              This is a simple hero unit, a simple jumbotron-style component for
-              calling extra attention to featured content or information.
+              This is the Ultimate Keyboard Showcase Gallery. Discover or Share
+              Your Own Board to the Community
             </p>
-            <p>
-              It uses utility classes for typography and spacing to space
-              content out within the larger container.
-            </p>
+            <p>Find all unique boards on from the all the community</p>
           </div>
         </div>
       </section>
@@ -29,13 +26,10 @@
             <% } else { %> <% boards.forEach((board) => { %>
             <div class="p-2">
               <div class="card" style="width: 18rem">
-                <img
-                  width="280px"
-                  height="191px"
-                  src="/uploads/<%= board.img %>"
-                  class="card-img-top"
-                  alt="..."
-                />
+                <img width="280px" height="191px" <% if
+                (board.img.includes("https")) {%> src="<%= board.img %>" <%}
+                else {%> src="/uploads/<%= board.img %>" <%}%>
+                class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
                     Owner: | <%= board.name %> | <%= board.brand %> | Layout:
