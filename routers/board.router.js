@@ -11,5 +11,6 @@ router.get("/board/:id/edit", BoardController.updatePage);
 router.get("/board/:id/details", BoardController.detailPage);
 router.post("/board", upload.single('img'), BoardController.addNew);
 router.post("/board/:id/update", upload.single('img'), BoardController.update);
+router.get("/my-gallery", BoardController.userBoardList);
 
 module.exports = router;

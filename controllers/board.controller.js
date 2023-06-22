@@ -7,6 +7,15 @@ class BoardController {
     res.render("pages/index", {boards: result})
   }
 
+  static async userBoardList(req, res) {
+    const result = await prisma.keyboard.findMany({
+      where:{
+        userId: req.user.id
+      }
+    })
+    res.render("pages/userBoards", {boards: result})
+  }
+
   static async createPage(req, res) {
     res.render("pages/boards/add")
   }

@@ -25,6 +25,12 @@
           <a class="nav-link" href="/board/add">New Board</a>
         </li>
         <% if (isLoggedIn) {%>
+        <li class="nav-item">
+          <a class="nav-link" href="/my-gallery">My Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/my-favorites">My Favorites</a>
+        </li>
         <form method="post" action="/logout">
           <li class="nav-item">
             <button class="nav-link" type="submit">Logout</button>
