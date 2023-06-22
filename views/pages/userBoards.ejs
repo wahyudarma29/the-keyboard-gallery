@@ -4,10 +4,12 @@
     <%- include("../partials/head") %>
   </head>
   <body>
-    <header><%- include("../components/navbar") %></header>
+    <header class="position-fixed w-100">
+      <%- include("../components/navbar") %>
+    </header>
     <main>
       <section id="hero">
-        <div class="py-5 px-5 text-center">
+        <div class="px-5 text-center" style="padding-top: 80px">
           <div>
             <h1 class="display-4 mb-4">This is your Gallery</h1>
           </div>

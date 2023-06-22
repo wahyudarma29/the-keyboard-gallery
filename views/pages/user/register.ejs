@@ -4,10 +4,10 @@
     <%- include("../../partials/head") %>
   </head>
   <body>
-    <header><%- include("../../components/navbar") %></header>
+    <header class="position-fixed w-100"><%- include("../../components/navbar") %></header>
     <main>
-      <section id="form-login" class="container vh-100 d-flex flex-column justify-content-center">
-        <form class="d-flex flex-column gap-3" method="post" action="/register">
+      <section id="form-login" class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+        <form class="d-flex flex-column gap-3" style="width: 35%;" method="post" action="/register">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -16,6 +16,7 @@
               id="username"
               placeholder="Enter username"
               name="username"
+              required
             />
           </div>
           <div class="form-group">
@@ -26,6 +27,7 @@
               id="password"
               placeholder="Password"
               name="password"
+              required
             />
           </div>
           </div>
@@ -35,5 +37,4 @@
     </main>
     <%- include("../../partials/scripts") %>
 </body>
-  </body>
 </html>

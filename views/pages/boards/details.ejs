@@ -4,10 +4,10 @@
     <%- include("../../partials/head") %>
   </head>
   <body>
-    <header><%- include("../../components/navbar") %></header>
+    <header class="position-fixed w-100"><%- include("../../components/navbar") %></header>
     <main></main>
       <section id="content">
-        <div class="container mt-4">
+        <div class="container" style="padding-top: 80px">
             <div class="d-flex">
                 <div class="p-2">
                   <img width="800px" height="500px" class="rounded" <% if
@@ -20,7 +20,7 @@
                     <p>Price Total ($): <%= board.price %> </p>
                     <p><%= board.desc %></p>
                     <form action="/board/<%= board.id %>/like" method="post">
-                      <button type="button" class="btn btn-outline-danger">Like</button>
+                      <button type="submit" class="btn btn-outline-danger">Like</button>
                     </form>
                 </div>
             </div>
