@@ -25,6 +25,7 @@ class BoardController {
         res.render("pages/boards/edit", { board: result })
       }
     } catch (error) {
+      req.flash("error", error)
       res.redirect("/")
     }
   }
@@ -34,15 +35,22 @@ class BoardController {
       const result = await prisma.keyboard.findUnique({
         where: {
           id: req.params.id
+        },
+        include:{
+          user: {
+            select:{
+              username:true,
+            }
+          },
         }
       })
-
       if(!result){
         throw "Data is not exists!"        
       } else {
         res.render("pages/boards/details", {board: result})
       }
     } catch (error) {
+      req.flash("error", error)
       res.redirect("/")
     }
   }
@@ -57,12 +65,12 @@ class BoardController {
           price: Number(req.body.price),
           img: req.file.filename,
           layout: req.body.layout,
-          userId: "abc123",
+          userId: req.user.userId,
         }
       });
       res.redirect("/");
     } catch (error) {
-      console.log(error)
+      req.flash("error", error)
       res.redirect("/board/create")
     }
   }
@@ -80,12 +88,12 @@ class BoardController {
           price: Number(req.body.price),
           img: req.file.filename,
           layout: req.body.layout,
-          userId: "abc123",
+          userId: req.user.userId,
         }
       });
       res.redirect("/");
     } catch (error) {
-      console.log(error)
+      req.flash("error", error)
       res.redirect(`/board/${req.params.id}/edit`)
     }
   }
