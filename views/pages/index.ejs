@@ -34,8 +34,9 @@
                 class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
-                    Owner: | <%= board.name %> | <%= board.brand %> | Layout:
-                    <%= board.layout %>
+                    Owner: <%= board.user.username %> <br />
+                    <%= board.name %> | <%= board.brand %> | Layout: <%=
+                    board.layout %>
                   </p>
                   <a
                     class="btn btn-dark w-100"
