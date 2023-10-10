@@ -19,7 +19,7 @@ class BoardController {
       } else {
         res.json(result)
       }
-    } catch (error) {
+    } catch (err) {
         res.json({message: error})
     }
   }
@@ -32,14 +32,14 @@ class BoardController {
           brand: req.body.brand,
           desc : req.body.desc,
           price: Number(req.body.price),
-          img: req.file.filename,
+          img: "",
           layout: req.body.layout,
-          userId: 1,
+          userId: "user1",
         }
       });
-      res.json(result);
-    } catch (error) {
-      req.json({message: error})
+      res.status(201).json(result);
+    } catch (err) {
+      return res.status(400).json({ message: "Something error", err });
     }
   }
 
@@ -54,14 +54,14 @@ class BoardController {
           brand: req.body.brand,
           desc : req.body.desc,
           price: Number(req.body.price),
-          img: req.file.filename,
+          img: "",
           layout: req.body.layout,
           userId: req.user.userId,
         }
       });
-      res.json(result);
-    } catch (error) {
-      req.json({message: error})
+      res.status(200).json(result);
+    } catch (err) {
+      return res.status(400).json({ message: "Something error", err });
     }
   }
 }

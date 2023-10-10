@@ -9,8 +9,8 @@ const userRouter = require("./user.router")
 
 const router = Router()
 
-router.use(userRouter)
 router.use(boardApiRouter)
+router.use(userRouter)
 router.use(authRouter)
 router.use(auth)
 
