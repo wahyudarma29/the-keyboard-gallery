@@ -20,7 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         
     env:
-      SECRET: ${{ secrets.SECRET }}
+      SECRET: ${{ dev.SECRET }}
   
     steps:
     - uses: actions/checkout@v3
