@@ -33,8 +33,8 @@ app.use(passport.session());
 
 app.use(router)
 
-app.listen(3000, () => {
-  console.log("Running on localhost:3000");
-});
+// app.listen(3000, () => {
+//   console.log("Running on localhost:3000");
+// });
 
 module.exports = app;
