@@ -16,9 +16,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Configure SSH
+        run: |
+            echo "${{ secrets.INSTANCE_SSH_KEY }}" > ssh-key.pem
+            chmod 400 ssh-key.pem
+
       - name: Deploy to LightSail with SSH
         run: |
-            ssh -i ${{ secrets.INSTANCE_SSH_KEY }} ubuntu@${{ secrets.INSTANCE_IP }} 
+            ssh -i ssh-key.pem ubuntu@${{ secrets.INSTANCE_IP }} 
             'cd the-keyboard-gallery 
             && git pull 
             && npm install 
